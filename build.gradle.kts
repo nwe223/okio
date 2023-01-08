@@ -184,7 +184,7 @@ subprojects {
     }
 
     if (loomEnabled) {
-      jvmArgs = jvmArgs!! + listOf(
+      jvmArgs = jvmArgs + listOf(
         "-Djdk.tracePinnedThread=full",
         "--enable-preview",
         "-DloomEnabled=true"
