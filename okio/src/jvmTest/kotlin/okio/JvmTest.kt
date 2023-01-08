@@ -24,6 +24,11 @@ import kotlin.test.Test
 
 class JvmTest {
   @Test
+  fun javaVersion() {
+    assertThat(System.getProperty("java.version")).startsWith("hello")
+  }
+
+  @Test
   fun baseDirectoryConsistentWithJavaIoFile() {
     assertThat(FileSystem.SYSTEM.canonicalize(".".toPath()).toString())
       .isEqualTo(File("").canonicalFile.toString())
