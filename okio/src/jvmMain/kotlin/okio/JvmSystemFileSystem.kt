@@ -147,11 +147,11 @@ internal open class JvmSystemFileSystem : FileSystem() {
 
   // We have to implement existence verification non-atomically on the JVM because there's no API
   // to do so.
-  private fun Path.requireExist() {
+  protected fun Path.requireExist() {
     if (!exists(this)) throw IOException("$this doesn't exist.")
   }
 
-  private fun Path.requireCreate() {
+  protected fun Path.requireCreate() {
     if (exists(this)) throw IOException("$this already exists.")
   }
 }

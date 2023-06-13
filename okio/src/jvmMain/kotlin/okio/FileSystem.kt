@@ -15,6 +15,7 @@
  */
 package okio
 
+import java.nio.file.FileSystem as JavaNioFileSystem
 import okio.Path.Companion.toPath
 import okio.internal.ResourceFileSystem
 import okio.internal.commonCopy
@@ -23,6 +24,8 @@ import okio.internal.commonDeleteRecursively
 import okio.internal.commonExists
 import okio.internal.commonListRecursively
 import okio.internal.commonMetadata
+import okio.internal.internalAsOkioFileSystem
+import org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
 
 actual abstract class FileSystem {
   @Throws(IOException::class)
@@ -155,5 +158,9 @@ actual abstract class FileSystem {
       classLoader = ResourceFileSystem::class.java.classLoader,
       indexEagerly = false,
     )
+
+    @JvmName("get")
+    @JvmStatic
+    fun JavaNioFileSystem.asOkioFileSystem(): FileSystem = internalAsOkioFileSystem()
   }
 }
